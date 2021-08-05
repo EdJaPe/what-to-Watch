@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+//import components needed
+import MovieGallery from "./components/MovieGallery";
+import { useState, useEffect } from "react";
+//global variables
+let API_KEY= process.env.REACT_APP_API_KEY
+
 
 function App() {
+  const [movieInfo, setMovieInfo] = useState([])
+
+  const fetchMovieInfo = () => {
+    let URl = `https://www.omdbapi.com/?apikey=${API_KEY}&t=star%20trek`
+    fetch(URl)
+      .then(res => res.json())
+      .then(jsonData => setMovieInfo(jsonData))
+  }
+  useEffect(() => {
+    fetchMovieInfo()
+  }, [])
+ 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <MovieGallery movieInfo={movieInfo}/>
+    </div>      
   );
 }
 
