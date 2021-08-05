@@ -1,7 +1,6 @@
 import React from 'react';
 
 const MovieCard =(props) => {
-    console.log(props, "🔥")
     return (
         <div>
             <img src={props.movieInfo.Poster} alt="poster"/>
