@@ -17,7 +17,7 @@ function App() {
   }
   useEffect(() => {
     fetchMovieInfo()
-  }, [])
+  }, ['my'])
  
 
   return (
@@ -27,6 +27,13 @@ function App() {
       />
       <MovieGallery 
       movieInfo={movieInfo} 
+      title={'Current Search'}
+      recentGallery={false}
+      />
+      <MovieGallery 
+      movieInfo={movieInfo} 
+      title={'Previous 3 Searches'}
+      recentGallery={true}
       />
     </div>      
   );
